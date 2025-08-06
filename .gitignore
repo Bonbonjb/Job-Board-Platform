@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+*.log
+*.sqlite3
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Django
+*.db
+*.sqlite3
+*.pot
+*.pyc
+db.sqlite3
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Pytest
+.cache/
+
+# Environment variables
+.env
+
+# Docker
+*.pid
+*.seed
+*.tar
+*.bak
+
+# Migrations (optional — if you want to auto-gen them later)
+**/migrations/*.py
+!**/migrations/__init__.py
