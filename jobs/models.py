@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings  
+from users.models import CustomUser
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -16,6 +18,7 @@ class Job(models.Model):
     salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     date_posted = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+    posted_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posted_jobs')
 
     def __str__(self):
         return self.title
