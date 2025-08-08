@@ -5,10 +5,22 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 class JobListCreateAPIView(generics.ListCreateAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
+
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,  
+    ]
+    filterset_fields = ['location', 'category', 'is_active', 'job_type']
+    search_fields = ['title', 'company', 'location']
+    ordering_fields = ['date_posted', 'salary']  
+    ordering = ['-date_posted'] 
 
     def get_permissions(self):
         if self.request.method == 'POST':

@@ -10,6 +10,13 @@ class Category(models.Model):
 
 
 class Job(models.Model):
+    JOB_TYPE = [
+        ('full_time', 'Full Time'),
+        ('part_time', 'Part Time'),
+        ('contract', 'Contract'),
+        ('internship', 'Internship'),
+    ]
+
     title = models.CharField(max_length=200)
     company = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
@@ -19,6 +26,7 @@ class Job(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     posted_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posted_jobs')
-
+    job_type = models.CharField(max_length=20, choices=JOB_TYPE)
+    
     def __str__(self):
         return self.title

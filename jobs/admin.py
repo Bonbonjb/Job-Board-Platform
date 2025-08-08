@@ -16,7 +16,7 @@ class JobInline(admin.TabularInline):
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
     list_display = ('title', 'company', 'location', 'date_posted', 'is_active')
-    list_filter = ('category', 'location', 'is_active', 'date_posted')
+    list_filter = ('category', 'location', 'is_active', 'date_posted', 'job_type')
     search_fields = ('title', 'company', 'location', 'description')
     ordering = ['-date_posted']
     inlines = [ApplicationInline]
