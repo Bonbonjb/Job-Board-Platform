@@ -25,6 +25,9 @@ class JobAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     inlines = [JobInline]
+    list_display = ('name',)
+    list_filter = ('name',)
+    ordering = ['name']
 
 admin.site.unregister(Category)  # in case it was already registered
 admin.site.register(Category, CategoryAdmin)

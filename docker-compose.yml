@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=jobplatformdb
+      - POSTGRES_USER=jobplatformuser
+      - POSTGRES_PASSWORD=supersecretpassword
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    ports:
+      - "6380:6379"  # Host port 6380 mapped to container's 6379
+
+  web:
+    build: .
+    command: gunicorn job_platform.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - DATABASE_URL=postgres://jobplatformuser:supersecretpassword@db:5432/jobplatformdb
+      - REDIS_URL=redis://redis:6379/0  # Connect inside docker network using container port
+    depends_on:
+      - db
+      - redis
+
+  celery:
+    build: .
+    command: celery -A job_platform worker -l info
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=postgres://jobplatformuser:supersecretpassword@db:5432/jobplatformdb
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  postgres_data:
