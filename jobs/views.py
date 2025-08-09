@@ -11,6 +11,7 @@ from .models import Category
 from .serializers import CategorySerializer
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema
+from django.shortcuts import render
 
 
 class IsAdminOrReadOnly(permissions.BasePermission):
@@ -96,3 +97,6 @@ def api_root(request, format=None):
         'applications': reverse('application-list-create', request=request, format=format),
         'categories': reverse('category-list-create', request=request, format=format),
     })
+
+    def index(request):
+        return render(request, "index.html")    

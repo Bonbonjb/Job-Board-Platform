@@ -3,6 +3,11 @@ from rest_framework.response import Response
 from .models import Application
 from .serializers import ApplicationSerializer
 from jobs.tasks import send_application_email
+from django.shortcuts import render
+
+
+def index(request):
+    return render(request, "index.html")
 
 
 class ApplicationListCreateAPIView(generics.ListCreateAPIView):

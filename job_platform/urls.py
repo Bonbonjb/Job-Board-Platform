@@ -26,6 +26,7 @@ from django.conf.urls.static import static
 from jobs.views import api_root
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 from django.views.generic import RedirectView
+from applications.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,7 +44,7 @@ urlpatterns = [
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/docs/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
-
+    path('', index, name='index'),
 ]
 
 if settings.DEBUG:
