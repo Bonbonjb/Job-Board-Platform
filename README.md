@@ -7,8 +7,9 @@ A Django REST API backend for a job platform application with features like job 
 ## Features
 
 - Custom user model with email authentication  
-- CRUD for jobs, categories, and applications  
-- Application status tracking with permission controls  
+- CRUD for jobs, categories, and applications
+- Application status tracking with permission ls Job-Board-Platform/.git
+controls
 - JWT-based authentication and token refresh  
 - API documentation with Swagger UI  
 - Asynchronous task queue using Celery and Redis  
