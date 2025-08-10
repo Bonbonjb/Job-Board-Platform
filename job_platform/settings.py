@@ -197,3 +197,20 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+if not DEBUG:
+    # Redirect all HTTP to HTTPS
+    SECURE_SSL_REDIRECT = True
+    
+    # Use secure cookies for sessions and CSRF
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    
+    # HTTP Strict Transport Security (HSTS) settings
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    
+    # Other recommended security headers Django can set:
+    SECURE_CONTENT_TYPE_NOSNIFF = True  # X-Content-Type-Options: nosniff
+    SECURE_BROWSER_XSS_FILTER = True    # X-XSS-Protection: 1; mode=block
