@@ -107,7 +107,7 @@
         <div class="links">
             <!-- Replace URLs below if your API docs endpoints change -->
             <a href="/api/docs/swagger/" class="swagger" target="_blank" rel="noopener noreferrer">Swagger UI Documentation</a>
-            <a href="/api/docs/redoc/" class="redoc" target="_blank" rel="noopener noreferrer">ReDoc Documentation</a> 
+            <a href="/api/docs/redoc/" class="redoc" target="_blank" rel="noopener noreferrer">ReDoc Documentation</a>
             
             <div class="divider">
                 <span class="divider-text">OR</span>
@@ -118,24 +118,6 @@
     </div>
 
     <script>
-        // Enhanced interactivity
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px)';
-                this.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.15)';
-            });
-            link.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            });
-            link.addEventListener('click', function(e) {
-                if (!this.href || this.href.includes('/')) {
-                    e.preventDefault();
-                    alert('Please update the link URLs in the HTML to point to your actual API endpoints');
-                }
-            });
-        });
-
         // Animate title on load
         const title = document.querySelector('h1');
         title.style.opacity = '0';
