@@ -74,35 +74,25 @@ git clone https://github.com/yourusername/job-platform-api.git
 cd job-platform-api
 Create and activate a virtual environment
 
-bash
-Copy
-Edit
+```bash
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 Install dependencies
 
-bash
-Copy
-Edit
+```bash
 pip install -r requirements.txt
 Apply database migrations
 
-bash
-Copy
-Edit
+```bash
 python manage.py makemigrations
 python manage.py migrate
 Create a superuser (optional, for admin access)
 
-bash
-Copy
-Edit
+```bash
 python manage.py createsuperuser
 Run the development server
 
-bash
-Copy
-Edit
+```bash
 python manage.py runserver
 🔑 Authentication
 This API uses JWT tokens for authentication powered by djangorestframework-simplejwt.
@@ -112,9 +102,7 @@ POST /api/token/
 
 Payload:
 
-json
-Copy
-Edit
+```json
 {
   "email": "user@example.com",
   "password": "yourpassword"
@@ -124,32 +112,48 @@ POST /api/token/refresh/
 
 Payload:
 
-json
-Copy
-Edit
+```json
 {
   "refresh": "<your_refresh_token>"
 }
 Use the Token
 Include the access token in the Authorization header:
 
-makefile
-Copy
-Edit
+```makefile
 Authorization: Bearer <access_token>
-📌 API Endpoints Overview
-Resource	Method	Endpoint	Description	Auth Required
-Users	GET	/api/users/	List users (admin only)	✅
-POST	/api/users/register/	Register new user	❌
-POST	/api/token/	Obtain JWT token	❌
-Jobs	GET	/api/jobs/	List all active jobs	❌
-POST	/api/jobs/	Create a new job (employer)	✅
-GET	/api/jobs/<id>/	Get job details	❌
-PUT	/api/jobs/<id>/	Update job (owner only)	✅
-DELETE	/api/jobs/<id>/	Delete job (owner only)	✅
-Applications	GET	/api/applications/	List user’s applications	✅
-POST	/api/applications/	Apply for a job	✅
-PUT	/api/applications/<id>/	Update application status (admin/employer)	✅
+# Job Platform API
+
+## API Endpoints Overview
+
+### Users
+
+| Method | Endpoint             | Description            | Auth Required |
+|--------|----------------------|------------------------|---------------|
+| GET    | /api/users/          | List users (admin only) | ✅            |
+| POST   | /api/users/register/ | Register new user       | ❌            |
+| POST   | /api/token/          | Obtain JWT token        | ❌            |
+
+---
+
+### Jobs
+
+| Method | Endpoint          | Description                | Auth Required |
+|--------|-------------------|----------------------------|---------------|
+| GET    | /api/jobs/        | List all active jobs       | ❌            |
+| POST   | /api/jobs/        | Create a new job (employer)| ✅            |
+| GET    | /api/jobs/<id>/   | Get job details            | ❌            |
+| PUT    | /api/jobs/<id>/   | Update job (owner only)    | ✅            |
+| DELETE | /api/jobs/<id>/   | Delete job (owner only)    | ✅            |
+
+---
+
+### Applications
+
+| Method | Endpoint                | Description                               | Auth Required |
+|--------|-------------------------|-----------------------------------------  |---------------|
+| GET    | /api/applications/      | List user’s applications                  | ✅            |
+| POST   | /api/applications/      | Apply for a job                           | ✅            |
+| PUT    | /api/applications/<id>/ | Update application status (admin/employer)| ✅            |
 
 See full documentation at /api/docs/swagger/ or /api/docs/redoc/.
 
