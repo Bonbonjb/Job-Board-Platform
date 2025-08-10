@@ -112,7 +112,7 @@ python manage.py runserver
 
 This API uses **JWT tokens** for authentication, powered by `djangorestframework-simplejwt`.
 
-### 🔐 Obtain Token
+### Obtain Token
 
 ```http
 POST /api/token/
