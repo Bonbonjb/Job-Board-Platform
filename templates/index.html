@@ -1,17 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Platform API</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        a {
+            display: block;
+            padding: 14px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+        }
+        a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .swagger {
+            background-color: #85bf43;
+            background: linear-gradient(to right, #85bf43, #6ba832);
+        }
+        .swagger:hover {
+            background: linear-gradient(to right, #6ba832, #5a942a);
+        }
+        .redoc {
+            background-color: #4a6fa5;
+            background: linear-gradient(to right, #4a6fa5, #3a5a8a);
+        }
+        .redoc:hover {
+            background: linear-gradient(to right, #3a5a8a, #2a4a7a);
+        }
+        .api-root {
+            background-color: #6c5ce7;
+            background: linear-gradient(to right, #6c5ce7, #5d4acb);
+        }
+        .api-root:hover {
+            background: linear-gradient(to right, #5d4acb, #4e3ab5);
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #eee;
+        }
+        .divider-text {
+            padding: 0 10px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Job Platform API</h1>
-    <p>Use the API endpoints to interact with the backend.</p>
-    <ul>
-        <li><a href="/api/docs/swagger/">Swagger UI Documentation</a></li>
-        <li><a href="/api/docs/redoc/">ReDoc Documentation</a></li>
-        <li><a href="/api/">API Root</a></li>
-    </ul>
+    <div class="container">
+        <h1>Welcome to the Job Platform API</h1>
+        <p>Use the API endpoints to interact with the backend.</p>
+        
+        <div class="links">
+            <a href="/api/docs/swagger/" class="swagger" target="_blank">Swagger UI Documentation</a>
+            <a href="/api/docs/redoc/" class="redoc" target="_blank">ReDoc Documentation</a>
+            
+            <div class="divider">
+                <span class="divider-text">OR</span>
+            </div>
+            
+            <a href="/api/" class="api-root" target="_blank">API Root</a>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced interactivity
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.15)';
+            });
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+            link.addEventListener('click', function(e) {
+                if (!this.href || this.href.includes('/')) {
+                    e.preventDefault();
+                    alert('Please update the link URLs in the HTML to point to your actual API endpoints');
+                }
+            });
+        });
+
+        // Animate title on load
+        const title = document.querySelector('h1');
+        title.style.opacity = '0';
+        title.style.transform = 'translateY(-20px)';
+        title.style.transition = 'all 0.6s ease-out';
+        
+        setTimeout(() => {
+            title.style.opacity = '1';
+            title.style.transform = 'translateY(0)';
+        }, 300);
+    </script>
 </body>
 </html>
