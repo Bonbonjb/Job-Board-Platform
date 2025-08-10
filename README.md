@@ -40,95 +40,94 @@ A comprehensive job board platform built with Django and Django REST Framework t
 job_platform/
 ├── manage.py
 ├── job_platform/
-│ ├── settings.py
-│ ├── urls.py
-│ └── ...
+│   ├── settings.py
+│   ├── urls.py
+│   └── ...
 ├── users/
-│ ├── models.py
-│ ├── serializers.py
-│ ├── views.py
-│ ├── urls.py
-│ └── ...
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   └── ...
 ├── jobs/
-│ ├── models.py
-│ ├── serializers.py
-│ ├── views.py
-│ ├── urls.py
-│ └── ...
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   └── ...
 ├── applications/
-│ ├── models.py
-│ ├── serializers.py
-│ ├── views.py
-│ ├── urls.py
-│ └── ...
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   └── ...
 ├── templates/
-│ └── index.html (API docs landing page)
+│   └── index.html (API docs landing page)
 └── media/ (uploaded resumes)
 
 ## 🔧 Setup Instructions
 
-1. **Clone the repository**
-
-```bash
+# 1. Clone the repository
 git clone https://github.com/yourusername/job-platform-api.git
 cd job-platform-api
-Create and activate a virtual environment
 
-```bash
+# 2. Create and activate a virtual environment
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-Install dependencies
+# On Windows:
+venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
 
-```bash
+# 3. Install dependencies
 pip install -r requirements.txt
-Apply database migrations
 
-```bash
+# 4. Apply database migrations
 python manage.py makemigrations
 python manage.py migrate
-Create a superuser (optional, for admin access)
 
-```bash
+# 5. Create a superuser (optional, for admin access)
 python manage.py createsuperuser
-Run the development server
 
-```bash
+# 6. Run the development server
 python manage.py runserver
-🔑 Authentication
+
+## 🔑 Authentication
+
 This API uses JWT tokens for authentication powered by djangorestframework-simplejwt.
 
-Obtain Token
+### Obtain Token
+
 POST /api/token/
 
 Payload:
 
-```json
 {
   "email": "user@example.com",
   "password": "yourpassword"
 }
-Refresh Token
+
+### Refresh Token
+
 POST /api/token/refresh/
 
 Payload:
 
-```json
 {
   "refresh": "<your_refresh_token>"
 }
-Use the Token
+
+### Use the Token
+
 Include the access token in the Authorization header:
 
-```makefile
 Authorization: Bearer <access_token>
-# Job Platform API
 
-## API Endpoints Overview
+## 📌 API Endpoints Overview
 
 ### Users
 
-| Method | Endpoint             | Description            | Auth Required |
-|--------|----------------------|------------------------|---------------|
+| Method | Endpoint             | Description             | Auth Required |
+|--------|----------------------|-------------------------|---------------|
 | GET    | /api/users/          | List users (admin only) | ✅            |
 | POST   | /api/users/register/ | Register new user       | ❌            |
 | POST   | /api/token/          | Obtain JWT token        | ❌            |
@@ -137,27 +136,34 @@ Authorization: Bearer <access_token>
 
 ### Jobs
 
-| Method | Endpoint          | Description                | Auth Required |
-|--------|-------------------|----------------------------|---------------|
-| GET    | /api/jobs/        | List all active jobs       | ❌            |
-| POST   | /api/jobs/        | Create a new job (employer)| ✅            |
-| GET    | /api/jobs/<id>/   | Get job details            | ❌            |
-| PUT    | /api/jobs/<id>/   | Update job (owner only)    | ✅            |
-| DELETE | /api/jobs/<id>/   | Delete job (owner only)    | ✅            |
+| Method | Endpoint          | Description                 | Auth Required |
+|--------|-------------------|-----------------------------|---------------|
+| GET    | /api/jobs/        | List all active jobs        | ❌            |
+| POST   | /api/jobs/        | Create a new job (employer) | ✅            |
+| GET    | /api/jobs/<id>/   | Get job details             | ❌            |
+| PUT    | /api/jobs/<id>/   | Update job (owner only)     | ✅            |
+| DELETE | /api/jobs/<id>/   | Delete job (owner only)     | ✅            |
 
 ---
 
 ### Applications
 
-| Method | Endpoint                | Description                               | Auth Required |
-|--------|-------------------------|-----------------------------------------  |---------------|
-| GET    | /api/applications/      | List user’s applications                  | ✅            |
-| POST   | /api/applications/      | Apply for a job                           | ✅            |
-| PUT    | /api/applications/<id>/ | Update application status (admin/employer)| ✅            |
+| Method | Endpoint                | Description                              | Auth Required |
+|--------|-------------------------|------------------------------------------|---------------|
+| GET    | /api/applications/      | List user’s applications                 | ✅            |
+| POST   | /api/applications/      | Apply for a job                          | ✅            |
+| PUT    | /api/applications/<id>/ | Update application status (admin/employer) | ✅            |
+
+---
 
 See full documentation at /api/docs/swagger/ or /api/docs/redoc/.
 
-🙋🏽‍♂️ Author: Brenda Jematia Bonareri
-📫 Contact: brendabjematia@gmail.com
-🌐 Hosted app: (https://job-board-platform-a4ll.onrender.com/)
+---
 
+🙋🏽‍♂ Author
+
+Brenda Jematia Bonareri  
+📫 Contact: brendabjematia@gmail.com  
+🌐 Hosted app: https://job-board-platform-a4ll.onrender.com/
+
+---
