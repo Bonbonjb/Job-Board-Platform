@@ -36,7 +36,7 @@ A comprehensive job board platform built with Django and Django REST Framework t
 - Deployment: Render.com  
 
 ## 📁 Project Structure
-
+```
 job_platform/
 ├── manage.py
 ├── job_platform/
@@ -64,57 +64,92 @@ job_platform/
 ├── templates/
 │   └── index.html (API docs landing page)
 └── media/ (uploaded resumes)
-
+```
 ## 🔧 Setup Instructions
 
-# 1. Clone the repository
-git clone https://github.com/yourusername/job-platform-api.git
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/bonbonjb/job-platform-api.git
 cd job-platform-api
+```
 
-# 2. Create and activate a virtual environment
+### 2. Create and Activate a Virtual Environment
+
+```bash
 python -m venv venv
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-# 3. Install dependencies
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-# 4. Apply database migrations
+### 4. Apply Migrations
+
+```bash
 python manage.py makemigrations
 python manage.py migrate
+```
 
-# 5. Create a superuser (optional, for admin access)
+### 5. Create a Superuser (for admin access)
+
+```bash
 python manage.py createsuperuser
+```
 
-# 6. Run the development server
+### 6. Run the Server
+
+```bash
 python manage.py runserver
+```
+
+---
 
 ## 🔑 Authentication
 
-This API uses JWT tokens for authentication powered by djangorestframework-simplejwt.
+This API uses **JWT tokens** for authentication, powered by `djangorestframework-simplejwt`.
 
-### Obtain Token
+### 🔐 Obtain Token
 
+```http
 POST /api/token/
+```
 
-Payload:
+**Payload:**
 
+```json
 {
-  "email": "user@example.com",
+  "email": "your@email.com",
   "password": "yourpassword"
 }
+```
 
-### Refresh Token
+### 🦁 Refresh Token
 
+```http
 POST /api/token/refresh/
+```
 
-Payload:
+**Payload:**
 
+```json
 {
   "refresh": "<your_refresh_token>"
 }
+```
+
+### 📌 Use the Token
+
+Include the access token in the `Authorization` header of authenticated requests:
+
+```http
+Authorization: Bearer <access_token>
+```
+
+---
 
 ### Use the Token
 
