@@ -127,7 +127,7 @@ POST /api/token/
 }
 ```
 
-### 🦁 Refresh Token
+### Refresh Token
 
 ```http
 POST /api/token/refresh/
