@@ -86,7 +86,7 @@ class CategoryListCreateAPIView(generics.ListCreateAPIView):
 class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAdminUser]  # Only admin can update/delete
+    permission_classes = [permissions.IsAdminUser]   # Only admin can update/delete
 
 @extend_schema(exclude=True)
 @api_view(['GET'])
